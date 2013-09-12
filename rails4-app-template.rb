@@ -28,7 +28,5 @@ git commit: %Q{-a -m 'Disable turbolinks'}
 
 # bundle install
 run "bundle install --path vendor/bundle"
-
-# This does not work since it runs before bundle install.
-# Please commit by hand.
-#git commit: %Q{-a -m 'Commit Gemfile.lock'}
+git add: "Gemfile.lock"
+git commit: %Q{-m 'Commit Gemfile.lock'}
