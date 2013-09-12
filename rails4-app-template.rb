@@ -9,8 +9,7 @@ run "cat <<EOF >> .gitignore
 EOF"
 git commit: %Q{-a -m 'Add /vendor/ to .gitignore'}
 
-# Add mysql2 gem
-gem 'mysql2'
+# Add database.yml.base and ignore database.yml
 run %Q{echo '' >> Gemfile}
 run "cat <<EOF >> .gitignore
 /config/database.yml
