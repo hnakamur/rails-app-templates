@@ -12,6 +12,11 @@ git commit: %Q{-a -m 'Add /vendor/ to .gitignore'}
 # Add mysql2 gem
 gem 'mysql2'
 run %Q{echo '' >> Gemfile}
+run "cat <<EOF >> .gitignore
+/config/database.yml
+EOF"
+git mv: %Q{config/database.yml config/database.yml.base}
+run "cp config/database.yml.base config/database.yml"
 git commit: %Q{-a -m 'Add mysql2 gem'}
 
 # Disable turbolinks
