@@ -1,4 +1,9 @@
 git :init
+
+if yes?('Use private mail address?')
+  git config: %Q{--local user.email hnakamur@gmail.com}
+end
+
 git add: "."
 git commit: %Q{-m 'Initial commit'}
 
