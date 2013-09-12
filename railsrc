@@ -1,0 +1,3 @@
+# --skip-sprockets : disable asset pipeline
+# -T               : use rspec
+--skip-sprockets -T -m ~/rails-app-templates/rails4-app-template.rb
