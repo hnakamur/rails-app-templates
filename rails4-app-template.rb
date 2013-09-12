@@ -30,6 +30,16 @@ s/, \"data-turbolinks-track\" => true//
 ' app/views/layouts/application.html.erb}
 git commit: %Q{-a -m 'Disable turbolinks'}
 
+# Disable assets pipeline.
+# We would like to have assets tasks, so don't use --skip-sprockets 
+run %Q{sed -i '' -e '
+/^  end$/i\\
+\\
+\\    # Disable the asset pipeline.\\
+\\    config.assets.enabled = false
+' config/application.rb}
+git commit: %Q{-a -m 'Disable asset pipelines, but leave asset tasks.'}
+
 # bundle install
 run "bundle install --path vendor/bundle"
 git add: "Gemfile.lock"

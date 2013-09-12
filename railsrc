@@ -1,4 +1,3 @@
 # -d mysql         : configure for mysql
-# --skip-sprockets : disable asset pipeline
 # -T               : use rspec
--d mysql --skip-sprockets -T -m ~/rails-app-templates/rails4-app-template.rb
+-d mysql -T -m ~/rails-app-templates/rails4-app-template.rb
