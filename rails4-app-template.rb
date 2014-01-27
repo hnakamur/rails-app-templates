@@ -36,12 +36,8 @@ git commit: %Q{-a -m 'Disable turbolinks'}
 
 # Disable assets pipeline.
 # We would like to have assets tasks, so don't use --skip-sprockets 
-run %Q{sed -i '' -e '
-/^  end$/i\\
-\\
-\\    # Disable the asset pipeline.\\
-\\    config.assets.enabled = false
-' config/application.rb}
+gsub_file 'config/application.rb',
+  /^  end$/, "\n    config.assets.enabled = false\n\\0"
 git commit: %Q{-a -m 'Disable asset pipelines, but leave asset tasks.'}
 
 # bundle install
