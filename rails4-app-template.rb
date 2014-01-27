@@ -16,7 +16,7 @@ run "cat <<EOF >> .gitignore
 EOF"
 git mv: %Q{config/database.yml config/database.yml.base}
 run "cp config/database.yml.base config/database.yml"
-git commit: %Q{-a -m 'Add mysql2 gem'}
+git commit: %Q{-a -m 'Ignore database.yml'}
 
 # Disable turbolinks
 run %Q{sed -i '' -e '
