@@ -22,16 +22,13 @@ git mv: %Q{config/database.yml config/database.yml.base}
 run "cp config/database.yml.base config/database.yml"
 git commit: %Q{-a -m 'Ignore database.yml'}
 
-# Disable turbolinks
-run %Q{sed -i '' -e '
-/^# Turbolinks makes following links in your web application faster. Read more: https:\\/\\/github.com\\/rails\\/turbolinks/,/^$/d
-' Gemfile}
-run %Q{sed -i '' -e '
-/^\\/\\/= require turbolinks/d
-' app/assets/javascripts/application.js}
-run %Q{sed -i '' -e '
-s/, \"data-turbolinks-track\" => true//
-' app/views/layouts/application.html.erb}
+## Disable turbolinks
+gsub_file 'Gemfile',
+  /^# Turbolinks makes following links in your web application faster.*\ngem 'turbolinks'\n\n/, ''
+gsub_file 'app/assets/javascripts/application.js',
+  /^\/\/= require turbolinks\n/, ''
+gsub_file 'app/views/layouts/application.html.erb',
+  /, \"data-turbolinks-track\" => true/, ''
 git commit: %Q{-a -m 'Disable turbolinks'}
 
 # Disable assets pipeline.
