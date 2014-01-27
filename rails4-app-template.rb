@@ -10,10 +10,8 @@ EOF"
 git commit: %Q{-a -m 'Add /vendor/ to .gitignore'}
 
 # add mysql collation configs to database.yml
-run %Q{sed -i '' -e '
-/^  encoding: utf8$/a\\
-\\  collation: utf8_general_ci
-' config/database.yml}
+gsub_file 'config/database.yml',
+  /^  encoding: utf8$/, "\\0\n  collation: utf8_general_ci"
 
 # Add database.yml.base and ignore database.yml
 run %Q{echo '' >> Gemfile}
